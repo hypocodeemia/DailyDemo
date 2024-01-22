@@ -38,7 +38,7 @@ public class Test {
                     break;
                 case 3:
                     System.out.println("----------即将退出程序----------");
-                    break;
+                    return;
                 default:
                     System.out.println("输入错误，请重新输入");
             }
