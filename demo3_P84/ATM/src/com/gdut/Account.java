@@ -2,25 +2,30 @@ package com.gdut;
 
 import java.util.Scanner;
 
-//对象→Account类--用于存放用户信息(卡号，姓名，性别，密码，存款，取款额度)
+//对象→Account类--用于存放用户信息(卡号，姓名，性别，密码，存款，信用等级，累计存款，累计取款，累计转账)
 public class Account {
     private String cardId;
     private String name;
     private String sex;
     private String password;
     private double deposit;
-    private double limit;
+    private double level;//暂时用不上，因为没建立等级系统
+    private double accumulatedWithdrawals;
+    private double accumulatedTransfer;
+
 
     public Account() {
     }
 
-    public Account(String cardId, String name, String sex, String password, double deposit, double limit) {
+    public Account(String cardId, String name, String sex, String password, double deposit, double level, double accumulatedWithdrawals, double accumulatedTransfer) {
         this.cardId = cardId;
         this.name = name;
         this.sex = sex;
         this.password = password;
         this.deposit = deposit;
-        this.limit = limit;
+        this.level = level;
+        this.accumulatedWithdrawals = accumulatedWithdrawals;
+        this.accumulatedTransfer = accumulatedTransfer;
     }
 
     public String getCardId() {
@@ -60,12 +65,12 @@ public class Account {
     }
 
     public void setPassword(String password) {
-        if (IsValidPassword(password)) {
+        if (isValidPassword(password)) {
             System.out.println("您的密码符合规定，设置成功");
         } else {
             Scanner sc = new Scanner(System.in);
             System.out.println("您的密码不符合\"6位纯数字的规定\"，请重新设置");
-            while (!IsValidPassword(password)) {
+            while (!isValidPassword(password)) {
                 System.out.print("请按照规定设置密码（6位纯数字）：");
                 password = sc.next();
             }
@@ -82,16 +87,32 @@ public class Account {
         this.deposit = deposit;
     }
 
-    public double getLimit() {
-        return limit;
+    public double getLevel() {
+        return level;
     }
 
-    public void setLimit(double limit) {
-        this.limit = limit;
+    public void setLevel(double level) {
+        this.level = level;
+    }
+
+    public double getAccumulatedWithdrawals() {
+        return accumulatedWithdrawals;
+    }
+
+    public void setAccumulatedWithdrawals(double accumulatedWithdrawals) {
+        this.accumulatedWithdrawals = accumulatedWithdrawals;
+    }
+
+    public double getAccumulatedTransfer() {
+        return accumulatedTransfer;
+    }
+
+    public void setAccumulatedTransfer(double accumulatedTransfer) {
+        this.accumulatedTransfer = accumulatedTransfer;
     }
 
     //方法1--检测银行卡密码是否符合规则：1. 6位   2. 纯数字
-    private static boolean IsValidPassword(String password) {
+    private static boolean isValidPassword(String password) {
         if (password.length() != 6) {
             return false;
         }
