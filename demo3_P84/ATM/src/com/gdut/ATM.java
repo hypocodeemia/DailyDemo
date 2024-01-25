@@ -130,7 +130,7 @@ public class ATM {
                 System.out.println(account.getName(2) + "，恭喜您成功开户，以下是您的卡号:" + cardId);
                 account.setCardId(cardId);
                 break;
-            } else System.out.print("您输入的密码与第一次输入的不一致");
+            } else System.out.println("您输入的密码与第一次输入的不一致");
         }
         accounts.put(account.getCardId(), account);
     }
@@ -246,6 +246,14 @@ public class ATM {
                     if (presentPassword.equals(account.getPassword())) {
                         System.out.print("请设置新的账户密码(6位纯数字):");
                         account.setPassword(sc.next());
+                        while (true) {
+                            System.out.print("请再次输入新的账户密码:");
+                            String checkPassword = sc.next();
+                            if (checkPassword.equals(account.getPassword())) {
+                                System.out.println(account.getName(2) + ",您的密码已经成功更改");
+                                break;
+                            } else System.out.println("您输入的密码与第一次输入的不一致");
+                        }
                     } else System.out.println("密码输入错误");
                     return;
                 }
