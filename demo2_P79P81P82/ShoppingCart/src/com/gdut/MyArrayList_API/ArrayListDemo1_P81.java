@@ -37,7 +37,7 @@ public class ArrayListDemo1_P81 {
     }
 //main结尾--------------------------------------
 
-    //方法1-删除集合subject中所有带有字符串target的成员,并返回boolean值表示是否有删除过subject的成员
+    //方法1-删除集合subject中所有带有字符串target的成员,并返回boolean值来反映是否有删除过subject的成员
     public static boolean DeleteAll(ArrayList<String> subject, String target) {
         boolean result=false;
         for (int i = subject.size()-1; i >= 0; i--) {
